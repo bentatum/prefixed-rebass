@@ -55,6 +55,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.3",
+    "inline-style-prefixer": "^2.0.1",
     "object-assign": "^4.0.1",
     "react-addons-pure-render-mixin": "^15.1.0"
   },

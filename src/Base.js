@@ -7,6 +7,8 @@ import padding from './util/padding'
 import radii from './util/radii'
 import colorStyle from './util/color-style'
 import config from './config'
+import Prefixer from 'inline-style-prefixer'
+const prefixer = new Prefixer()
 
 /**
  * The Base component is internally used by all other Rebass components
@@ -137,7 +139,7 @@ class Base extends React.Component {
       ...elementProps
     } = props
 
-    const sx = assign(
+    let sx = assign(
       { boxSizing: 'border-box' },
       baseStyle,
       contextStyle,
@@ -147,6 +149,10 @@ class Base extends React.Component {
       radii({ rounded, pill, circle }, borderRadius),
       style
     )
+
+    if (typeof document !== 'undefined') {
+      sx = prefixer.prefix(sx)
+    }
 
     return (
       <Component {...elementProps}
