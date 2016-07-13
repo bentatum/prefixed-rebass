@@ -2,6 +2,8 @@
 import React from 'react'
 import Base from './Base'
 import config from './config'
+import Prefixer from 'inline-style-prefixer'
+const prefixer = new Prefixer()
 
 /**
  * Fixed positioned overlay for use with modal dialogs
@@ -53,6 +55,10 @@ const Overlay = ({
       width: fullWidth ? '100%' : null,
       ...(box ? innerStyle : {})
     }
+  }
+
+  if (typeof document !== 'undefined') {
+    sx.root = prefixer.prefix(sx.root)
   }
 
   return (
